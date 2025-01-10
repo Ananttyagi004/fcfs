@@ -1,0 +1,32 @@
+{% extends 'finance/base.html' %}
+{% load static %}
+{% block content %} 
+
+
+    <div class=" text-white p-4 mx-auto bg-dark ">
+        <div class="alert  alert-danger p-2" >
+           <h2 style="font-family: 'Times New Roman', Times, serif;"> {{heading}} </h2>
+        </div>
+        <div class=" shadow p-12 mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+    {% for fm in form %}
+    <p>{{fm.label}}
+        
+    {{fm}}
+    {% if fm.errors %}
+                    <ul class="errorlist">
+                        {% for error in fm.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+    </p>
+    <br>
+    {% endfor %}    
+            <input  class="btn btn-success" type="submit" value="SUBMIT">
+        </form>
+    </div>
+    </div>
+
+    {% endblock content %}
